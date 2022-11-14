@@ -1,0 +1,2019 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "2tb1kym9sa07h"
+  },
+  "info": {
+    "title": "medbookly",
+    "version": "1.0",
+    "description": "API Spec for the medbookly app",
+    "contact": {
+      "email": "beep@topuniverse.org",
+      "url": "https://topuniverse.org",
+      "name": "Top Universe Backend Team"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Offline"
+    },
+    {
+      "description": "Online",
+      "url": "https://0rb6tu6ie8.execute-api.us-east-1.amazonaws.com"
+    }
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "This route creates a new account",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "post-signup",
+        "description": "This endpoint is used to create a new account",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/auth_signup"
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "summary": "To sign in to your account",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "post-signin",
+        "description": "Sign in to your account",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/auth_signIn"
+        }
+      }
+    },
+    "/profile/user": {
+      "parameters": [],
+      "post": {
+        "summary": "",
+        "operationId": "create-profile",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          }
+        },
+        "tags": [
+          "userProfile"
+        ],
+        "description": "Create a new user profile",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/profile_createProfile"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "required": true,
+            "description": "JWT Bearer Token"
+          }
+        ]
+      },
+      "put": {
+        "summary": "",
+        "operationId": "put-profile-user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "userProfile"
+        ],
+        "description": "Update a single user profile",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/profile_updateProfile"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token"
+          }
+        ]
+      }
+    },
+    "/profile/facility": {
+      "post": {
+        "summary": "",
+        "operationId": "create-facility-profile",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          }
+        },
+        "tags": [
+          "facilityProfile",
+          "facilityAdmin"
+        ],
+        "description": "Create a facility profile",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/profile_createFacilityProfile"
+        }
+      },
+      "put": {
+        "summary": "",
+        "operationId": "update-facility-profile",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Update Facility Profile",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/profile_updateFacilityProfile"
+        },
+        "tags": [
+          "facilityProfile",
+          "facilityAdmin"
+        ]
+      }
+    },
+    "/profile/user/{userId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "userProfile"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-profile-user-id",
+        "description": "Get a single user profile",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/profile/facility/{facilityId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "facilityId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "facilityProfile",
+          "facilityAdmin"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-profile-facility-id",
+        "description": "Get a single facility profile",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-facility-profile",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Delete facility profile using facility id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token"
+          }
+        ],
+        "tags": [
+          "facilityProfile",
+          "facilityAdmin"
+        ]
+      }
+    },
+    "/profile/users": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "userProfile"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-profile-users",
+        "description": "Fetch all user profiles",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/profile/facilities": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "facilityProfile",
+          "facilityAdmin"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-profile-facilities",
+        "description": "Fetch all facility profiles",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/profile/facility/{action}/{facilityId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "action",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "facilityId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "",
+        "operationId": "patch-facility-profile",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Perform series of operations on a facility ranging from \"suspend\", \"enable\" & \"disable\" operations.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "facilityProfile",
+          "facilityAdmin"
+        ]
+      }
+    },
+    "/booking": {
+      "post": {
+        "summary": "",
+        "operationId": "create-booking",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Create a booking",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/booking_createBooking"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "booking"
+        ]
+      }
+    },
+    "/booking/{bookingId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "bookingId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "",
+        "operationId": "update-booking",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "update booking using the appointment id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/booking_updateBooking"
+        },
+        "tags": [
+          "booking"
+        ]
+      },
+      "post": {
+        "summary": "",
+        "operationId": "reschedule-booking",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation"
+          }
+        ],
+        "description": "Reschedule booking",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/booking_rescheduleBooking"
+        },
+        "tags": [
+          "booking"
+        ]
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-booking",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Delete booking using the appointment id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation"
+          }
+        ],
+        "tags": [
+          "booking"
+        ]
+      },
+      "get": {
+        "summary": "",
+        "operationId": "get-single-booking",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Get a single booking with booking id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "booking",
+          "facilityAdmin"
+        ]
+      }
+    },
+    "/booking/{action}/{bookingId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "action",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "bookingId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "",
+        "operationId": "booking-update-actions",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "For updating booking request status and performing other generic actions",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "booking"
+        ]
+      }
+    },
+    "/bookings": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "booking"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-all-bookings",
+        "description": "Get all platform bookings",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/booking/facility/{facilityId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "facilityId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "booking"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-facility-bookings",
+        "description": "Fetch all bookings for a facility",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/activity": {
+      "post": {
+        "summary": "",
+        "operationId": "create-new-activity",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Create a new activity",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/activity_createActivity"
+        },
+        "tags": [
+          "activity"
+        ]
+      }
+    },
+    "/activities": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-all-platform-activities",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "description": "Get all platform activities",
+        "tags": [
+          "activity"
+        ]
+      }
+    },
+    "/activities/{action}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "action",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "400": {
+            "$ref": "#/components/responses/error"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "403": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-activities-for-specific-action",
+        "description": "Get activities for specific actions",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "activity"
+        ]
+      }
+    },
+    "/roleType/{roleTypeId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "roleTypeId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-role-roleId",
+        "description": "Get role type with role id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ],
+        "tags": [
+          "roleType"
+        ]
+      },
+      "put": {
+        "summary": "",
+        "operationId": "update-role-type",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Update role type",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/roleType_updateRoleType"
+        },
+        "tags": [
+          "roleType"
+        ]
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-role-type",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "description": "Delete role type using role id",
+        "tags": [
+          "roleType"
+        ]
+      }
+    },
+    "/roleType": {
+      "post": {
+        "summary": "",
+        "operationId": "create-new-role-type",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Create a new role type",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/roleType_createRoleType"
+        },
+        "tags": [
+          "roleType"
+        ]
+      },
+      "parameters": []
+    },
+    "/roleTypes": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-all-roles-types",
+        "description": "Fetch all role types",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ],
+        "tags": [
+          "roleType"
+        ]
+      },
+      "parameters": []
+    },
+    "/userRole": {
+      "post": {
+        "summary": "",
+        "operationId": "create-user-role",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Create User Role",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ],
+        "tags": [
+          "userRole"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/userRole_createUserRole"
+        }
+      },
+      "parameters": []
+    },
+    "/userRole/{userId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "userRole"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-role-userId",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "required": true,
+            "name": "Authorisation"
+          }
+        ],
+        "description": "Fetch user Role"
+      },
+      "put": {
+        "summary": "",
+        "operationId": "update-user-role",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": [
+          "userRole"
+        ],
+        "description": "Update user role",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/userRole_updateUserRole"
+        }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/userRole/{userRoleId}/{roleType}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userRoleId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "roleType",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "",
+        "operationId": "delete-userRole",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Delete user role",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ],
+        "tags": [
+          "userRole"
+        ]
+      }
+    },
+    "/specialist": {
+      "post": {
+        "summary": "",
+        "operationId": "create-specialist",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Create a new specialist",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "specialists"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/specialists_createSpecialist"
+        }
+      }
+    },
+    "/specialists/{facilityId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "specialists"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-facility-specialists",
+        "description": "Get all specialists belonging to a facility",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "facilityId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/specialist/{specialistId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "specialistId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "specialists"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "operationId": "get-specialist",
+        "description": "Fetch Speciaist record",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "summary": "",
+        "operationId": "update-specialist",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Update Specialist",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorisation",
+            "description": "JWT Bearer Token"
+          }
+        ],
+        "tags": [
+          "specialists"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/specialists_updateSpecialist"
+        }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-specialist",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          },
+          "401": {
+            "$ref": "#/components/responses/error"
+          },
+          "404": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "description": "Delete Specialist",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "JWT Bearer Token",
+            "name": "Authorisation",
+            "required": true
+          }
+        ],
+        "tags": [
+          "specialists"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "responses": {
+      "success": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            },
+            "examples": {
+              "successExample": {
+                "value": {
+                  "status": 200,
+                  "message": "Successful"
+                }
+              }
+            }
+          }
+        }
+      },
+      "error": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "x-examples": {
+                "example-1": {
+                  "status": 1,
+                  "message": "string"
+                }
+              },
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            },
+            "examples": {
+              "exampleError": {
+                "value": {
+                  "status": 404,
+                  "message": "not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "profile_createProfile": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "middleName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "country",
+                "location",
+                "phoneNumber",
+                "status"
+              ]
+            }
+          }
+        },
+        "description": "create profile request body"
+      },
+      "profile_updateProfile": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "middleName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "country",
+                "location",
+                "phoneNumber",
+                "status"
+              ]
+            }
+          }
+        },
+        "description": "update profile request body"
+      },
+      "auth_signup": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "password": {
+                  "type": "string",
+                  "format": "password",
+                  "pattern": "^(?=.*[A-Z])(?=.*[\\W])(?=.*[0-9])(?=.*[a-z]).{8,20}$",
+                  "minLength": 8,
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        },
+        "description": "Signup Request Body should be a json object with a valid email and password (Password should contain uppercase, lowercase, number and at least 1 special character with a minimum lenght of 8 characters)"
+      },
+      "auth_signIn": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "password": {
+                  "type": "string",
+                  "format": "password",
+                  "pattern": "^(?=.*[A-Z])(?=.*[\\W])(?=.*[0-9])(?=.*[a-z]).{8,20}$",
+                  "maxLength": 20,
+                  "minLength": 8
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        },
+        "description": "Signup Request Body should be a json object with a valid email and password (Password should contain uppercase, lowercase, number and at least 1 special character with a minimum lenght of 8 characters)"
+      },
+      "profile_createFacilityProfile": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title"
+                    ]
+                  }
+                },
+                "regNumber": {
+                  "type": "string"
+                },
+                "contact": {
+                  "type": "object",
+                  "required": [
+                    "phone",
+                    "email",
+                    "address"
+                  ],
+                  "properties": {
+                    "phone": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "twitter": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "location",
+                "services",
+                "regNumber",
+                "contact"
+              ]
+            }
+          }
+        },
+        "description": "Request body when creating a facility profile"
+      },
+      "profile_updateFacilityProfile": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "service": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title"
+                    ]
+                  }
+                },
+                "regNumber": {
+                  "type": "string"
+                },
+                "contact": {
+                  "type": "object",
+                  "required": [
+                    "phone",
+                    "email",
+                    "address"
+                  ],
+                  "properties": {
+                    "phone": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "twitter": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "location",
+                "service",
+                "regNumber",
+                "contact"
+              ]
+            }
+          }
+        }
+      },
+      "booking_createBooking": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string"
+                },
+                "facilityId": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "specialist": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "notification": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "userId",
+                "facilityId",
+                "date",
+                "time"
+              ]
+            }
+          }
+        },
+        "description": "Request body for creating a new appointment"
+      },
+      "booking_rescheduleBooking": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string"
+                },
+                "facilityId": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "specialist": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "notification": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "userId",
+                "facilityId",
+                "date",
+                "time"
+              ]
+            }
+          }
+        },
+        "description": "Request body for recheduling an appointment"
+      },
+      "booking_updateBooking": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bookingId": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "specialist": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bookingId"
+              ]
+            }
+          }
+        },
+        "description": "Request body for updating a booking"
+      },
+      "activity_createActivity": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "userId",
+                "action"
+              ]
+            }
+          }
+        },
+        "description": "Create Activity "
+      },
+      "roleType_createRoleType": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            }
+          }
+        }
+      },
+      "roleType_updateRoleType": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            }
+          }
+        }
+      },
+      "userRole_createUserRole": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string"
+                },
+                "roles": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "userId",
+                "roles"
+              ]
+            }
+          }
+        }
+      },
+      "userRole_updateUserRole": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roles": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "roles"
+              ]
+            }
+          }
+        }
+      },
+      "specialists_createSpecialist": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "facilityId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "photo": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "specialisation": {
+                  "type": "object",
+                  "properties": {
+                    "speciality": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "qualification": {
+                  "type": "string"
+                },
+                "yearsOfExperience": {
+                  "type": "string"
+                },
+                "license": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "title",
+                "gender",
+                "specialisation",
+                "license",
+                "status"
+              ]
+            }
+          }
+        }
+      },
+      "specialists_updateSpecialist": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "facilityId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "photo": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "specialisation": {
+                  "type": "object",
+                  "properties": {
+                    "speciality": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "qualification": {
+                  "type": "string"
+                },
+                "yearsOfExperience": {
+                  "type": "string"
+                },
+                "license": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  }
+}

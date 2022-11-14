@@ -1,0 +1,26 @@
+org: solomonmarvel97
+app: medbookly
+service: medbookly
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  environment:
+    PORT: ${param:PORT}
+    HOST: ${param:HOST}
+    DATABASE: ${param:DATABASE}
+    MAILGUN_API_KEY: ${param:MAILGUN_API_KEY}
+    POSTMARK_API_KEY: ${param:POSTMARK_API_KEY}
+    JWT_SECRET: ${param:JWT_SECRET}
+    SECRET: ${param:SECRET}
+    FRONTEND_HOST: ${param:FRONTEND_HOST}
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
+
+plugins:
+  - serverless-offline

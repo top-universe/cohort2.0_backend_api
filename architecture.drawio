@@ -1,0 +1,261 @@
+<mxfile host="65bd71144e">
+    <diagram id="qsI6oPGIzwRHsD8YyjTx" name="Authentication">
+        <mxGraphModel dx="1055" dy="2053" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" value="" style="edgeStyle=none;html=1;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Accept user's email and password as JSON" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="70" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="edgeStyle=none;html=1;" parent="1" source="3" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Validate JSON data using Ajv" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="160" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="edgeStyle=none;html=1;" parent="1" source="5" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Verify if email already exists on the database" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="250" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Yes" style="edgeStyle=none;html=1;" parent="1" source="7" target="11" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="&lt;font style=&quot;font-size: 12px&quot;&gt;No&lt;/font&gt;" style="edgeStyle=none;html=1;fontSize=17;" parent="1" source="7" target="22" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="If acccount exits?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="340" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="11" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="365" y="100"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="Send a duplicate error message" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="350" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="116" style="edgeStyle=none;html=1;" parent="1" source="16" target="103" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Send verification email" style="whiteSpace=wrap;html=1;strokeWidth=2;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="750" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="" style="edgeStyle=none;html=1;fontSize=12;startArrow=none;" parent="1" source="51" target="26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="190" y="870" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&lt;font style=&quot;font-size: 17px&quot;&gt;Signup Workflow&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="-50" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="114" value="" style="edgeStyle=none;html=1;" parent="1" source="22" target="113" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;span style=&quot;font-size: 12px&quot;&gt;Hash password&lt;/span&gt;" style="whiteSpace=wrap;html=1;fontSize=17;opacity=90;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="470" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Send a signup success message" style="whiteSpace=wrap;html=1;strokeWidth=2;opacity=90;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="1190" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="edgeStyle=none;html=1;fontSize=17;" parent="1" source="28" target="30" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Accept user's email and password as JSON" style="whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="70" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;font style=&quot;font-size: 17px&quot;&gt;Signin Workflow&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#001DBC;fillColor=#0050ef;fontSize=12;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="-50" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;fontSize=17;" parent="1" source="30" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Validate JSON data using Ajv" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="160" width="120" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="" style="edgeStyle=none;html=1;fontSize=17;" parent="1" source="32" target="34" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Verify if email exist on the database" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="&lt;font style=&quot;font-size: 12px&quot;&gt;No&lt;/font&gt;" style="edgeStyle=none;html=1;fontSize=17;" parent="1" source="34" target="36" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Yes" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="34" target="39" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="If email exists?" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="350" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="Send Invalid email error message" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="39" target="41" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="Verify password" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="480" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="41" target="43" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="41" target="47" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="If password is valid?" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="580" width="100" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="43" target="55" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="Send&amp;nbsp; Invalid password error message" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="595" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="47" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="Generate authentication token with _id and email" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="710" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="Send token cookie to client" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="820" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="No" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="51" target="26" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="55" target="57" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="If forget password" style="rhombus;whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="700" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="57" target="59" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="Accept user email as JSON" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="810" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="59" target="66" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="Validate JSON data&amp;nbsp;" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="905" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="61" target="63" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="Send password reset link to email" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="63" target="69" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="Accept password reset link" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1270" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="66" target="79" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="Generate password reset link" style="whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="990" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="Yes" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="69" target="71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" value="No" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="69" target="83" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="If link is valid (not expired)" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="815" y="1360" width="90" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="" style="edgeStyle=none;html=1;fontSize=12;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="71" target="77" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="860" y="1610" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="71" value="Accept and validate new password" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="77" target="86" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="Update new password on db" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fontSize=12;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="830" y="1620" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="79" target="61" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="Save reset link to database" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fontSize=12;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="830" y="1080" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" style="edgeStyle=none;html=1;entryX=0.95;entryY=0.425;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;" parent="1" source="83" target="55" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1030" y="734"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="83" value="Send Link expired error message" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                    <mxGeometry x="970" y="1375" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="96" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;strokeWidth=2;" parent="1" source="86" target="89" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1120" y="1790"/>
+                            <mxPoint x="1120" y="25"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="86" value="Send password reset success message" style="whiteSpace=wrap;html=1;strokeWidth=2;opacity=90;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1760" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="89" target="28" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="Signin" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="635" width="70" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" value="" style="edgeStyle=none;html=1;fontSize=12;" parent="1" source="93" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" value="Signup" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="155" y="-10" width="70" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="yes" style="edgeStyle=none;html=1;" parent="1" source="51" target="106" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="If link expired?" style="rhombus;whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="990" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="111" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="98" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" value="Generate email verification link" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;strokeWidth=1;opacity=90;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="630" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="" style="edgeStyle=none;html=1;" parent="1" source="103" target="51" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="Verify link" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="910" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="Send link expired error message" style="whiteSpace=wrap;html=1;strokeWidth=1;opacity=90;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="1005" width="120" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="115" value="" style="edgeStyle=none;html=1;" parent="1" source="113" target="98" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="113" value="Save details to db" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="550" width="60" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

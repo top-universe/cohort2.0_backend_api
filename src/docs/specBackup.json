@@ -1,0 +1,168 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "2tb1kym9sa07h"
+  },
+  "info": {
+    "title": "medbookly",
+    "version": "1.0",
+    "description": "API Spec for the medbookly app",
+    "contact": {
+      "email": "beep@topuniverse.org",
+      "url": "https://topuniverse.org",
+      "name": "Top Universe Backend Team"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Offline"
+    },
+    {
+      "description": "Online",
+      "url": "http://3.93.92.155"
+    }
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "This route creates a new account",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "post-signup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": "sign up json body"
+        },
+        "description": "This endpoint is used to create a new account",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/success"
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "summary": "To sign in to your account",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "post-signin",
+        "description": "Sign in to your account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Sign in body schema"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "responses": {
+      "success": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            },
+            "examples": {
+              "successExample": {
+                "value": {
+                  "status": 200,
+                  "message": "Successful"
+                }
+              }
+            }
+          }
+        }
+      },
+      "error": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "x-examples": {
+                "example-1": {
+                  "status": 1,
+                  "message": "string"
+                }
+              },
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            },
+            "examples": {
+              "exampleError": {
+                "value": {
+                  "status": 404,
+                  "message": "not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
