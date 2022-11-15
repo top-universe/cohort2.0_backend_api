@@ -15,13 +15,13 @@ module.exports = class Postmark {
    * @param {string} [data.html] - Describes the email optional html body
    */
   static async send(data) {
-    client.sendEmail({
+    await client.sendEmail({
         "From": "beep@topuniverse.org",
         "To": data.to,
         "Subject": data.subject,
         "TextBody": data.body,
         "MessageStream": "outbound"
       })
-      .catch(err => { throw new Error(err) });
+      .catch(err => { console.log(err)});
   }
 }

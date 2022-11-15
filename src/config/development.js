@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 exports.development = {
     PORT: process.env.PORT,
     HOST: process.env.HOST,
