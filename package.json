@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "dev": "./scripts/dev.sh",
-    "doc": "./scripts/doc.sh",
-    "setup": "./scripts/setup.sh"
+    "dev": "bash scripts/dev.sh",
+    "doc": "bash scripts/doc.sh",
+    "setup": "bash scripts/setup.sh"
   },
   "repository": {
     "type": "git",

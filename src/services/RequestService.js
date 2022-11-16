@@ -9,12 +9,19 @@ module.exports = class RequestService {
  * @param {Object} [data] - Describes the optional json body 
  * @param {Array} [headers] - An optional header array that is a string
  */
-  static async call(method, uri, data, headers) {
+  static async call(method, url, data, headers) {
     const options = { method, url, headers, data };
     try {
       return await axios.request(options);
     } catch (err) {
-      throw new Error(err)
+      console.log(err)
+      // throw new Error(err)
     }
   }
 }
+
+
+// let data = { email: "solomonmarvel@hotmail.com", password: "abcd12345"}
+// RequestService.call('POST', "http://localhost:3000/signup", data).then(response => {
+//   console.log(response.data)
+// })

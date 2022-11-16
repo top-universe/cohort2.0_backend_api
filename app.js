@@ -43,6 +43,6 @@ app.use(express.json())
     .get('/', (req,res) => res.send('Everything works pretty well 🚀, powered by Top Universe'))
     .listen(AppConfig.PORT, () =>  console.log(`App is running on port ${AppConfig.PORT}`)) // launch express app
 
-
+    
 
     module.exports.app = app;

@@ -16,7 +16,8 @@ authRouter.post('/forget', forgetPassword)
 authRouter.post('/reset/:link', resetPassword)
 
 // used primarily for testing middlewares
-authRouter.get('/try' , function (req, res) {
+authRouter.get('/try', verifyLogin, upload, function (req, res) {
+    console.log(req.files)
     res.send('done testing')
 })
 
