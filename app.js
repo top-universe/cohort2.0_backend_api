@@ -38,7 +38,7 @@ const auth = require('./src/modules/auth/router'),
 app.use(express.json())
     .use(cors) // loaded cors
     .use(express.urlencoded({ extended: false }))
-    .use(auth) // mounting modules
+    .use(auth, profile) // mounting modules
     .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)) // loaded swagger documentation
     .get('/', (req,res) => res.send('Everything works pretty well 🚀, powered by Top Universe'))
     .listen(AppConfig.PORT, () =>  console.log(`App is running on port ${AppConfig.PORT}`)) // launch express app

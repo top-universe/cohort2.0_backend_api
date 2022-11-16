@@ -27,7 +27,7 @@ const verifyRoles = (allowedRoles) => {
 
 // role test
 const fetchUserRoles = (userId) => {
-    return ['baby']
+    return ['baby', 'user', ['admin']]
 }
 
 module.exports = {

@@ -1,28 +1,27 @@
 const { v4 } = require('uuid')
 const mongoose = require('mongoose')
-const auth = require('../auth/schema')
+const Joi = require('joi');
+
 
 let ProfileSchema = new mongoose.Schema({
-
     _id:{
         type: String,
-        default: v4()
+        default: () => v4()
     },
     user:{
-        type: mongoose.Types.ObjectId,
-        ref: 'auth'
+        type: String,
     },
-    first_name:{ 
+    firstName:{ 
         type: String,
         required: true,
         trim: true
 
     },
-    middle_name:{ 
+    middleName:{ 
         type: String,
         trim: true
     },
-    last_name:{ 
+    lastName:{ 
         type: String,
         required: true,
         trim: true
@@ -36,10 +35,13 @@ let ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    phone:{ 
+    phoneNumber:{ 
         type: String,
         required: true
 
+    },
+    status:{ 
+        type: String,
     },
 },
 {
@@ -47,4 +49,15 @@ let ProfileSchema = new mongoose.Schema({
 }
 )
 
-module.exports = mongoose.model('UserProfile',ProfileSchema);
+exports.ProfileCollection = mongoose.model('UserProfile', ProfileSchema);
+
+
+exports.profileValidatorSchema = Joi.object().keys({
+    firstName: Joi.string().lowercase().required(),
+    middleName: Joi.string().lowercase(),
+    lastName: Joi.string().lowercase().required(),
+    country: Joi.string().lowercase().required(),
+    location: Joi.string().lowercase().required(),
+    phoneNumber: Joi.string().lowercase().required(),
+    country: Joi.string().lowercase().required()
+})

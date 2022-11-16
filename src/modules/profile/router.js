@@ -1,9 +1,15 @@
 const profileRouter = require('express').Router()
-const {userController, facilityController} = require('./controller')
-const { grantAccess, allowIfLoggedin } = require('../../utils/helper')
+const { verifyLogin } = require('../../middleware/verifyLogin')
+const { userProfileController } = require('./controller/userProfileController')
+
+// data validations
+const { profileValidatorSchema } = require('./schema')
+const { validateJsonBody } = require('../../middleware/validateJsonBody')
+
 
 // user
-// profileRouter.post('/profile/user', userController.createProfile)
+profileRouter.post('/profile/user', verifyLogin, validateJsonBody(profileValidatorSchema), userProfileController.createUserProfile)
+profileRouter.put('/profile/user', userProfileController.updateUserProfileUser)
 
 
 // facility
