@@ -12,7 +12,7 @@ exports.userProfileController = {
       data.value.user = userId
 
       // verifyIfProfileAlreadyExists()
-      await userProfileModel.getUserProfile(userId)
+      await userProfileModel.checkIfProfileExists(userId)
 
       // call the userProfileModel
       await userProfileModel.createUserProfile(data.value)
@@ -28,8 +28,20 @@ exports.userProfileController = {
     }
   },
 
-  getProfileUserId(req, res) {
-    res.send('done')
+
+  async getUserProfile(req, res) {
+    try {
+      let userId = req.params.id
+
+      if (req.user.id !== req.params.id) 
+      throw new Error('access denied')
+
+      // verifyIfProfileAlreadyExists()
+      let userProfile = await userProfileModel.getUserProfile(userId)
+      res.status(200).json(userProfile)
+    }catch(err) {
+      res.status(404).json({ error: err.message })
+    }
   },
 
   getProfileUsers(req, res) {

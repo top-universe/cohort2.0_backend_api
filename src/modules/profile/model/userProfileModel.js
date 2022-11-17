@@ -10,9 +10,13 @@ module.exports = class ProfileModel {
             return await userProfileRepository.createUserProfile(data)
     }
 
-    static async getUserProfile(userId) {
-            return await userProfileRepository.getUserProfile(userId)
+    static async checkIfProfileExists(userId) {
+            return await userProfileRepository.checkIfProfileExists(userId)
     }
+
+    static async getUserProfile(userId) {
+        return await userProfileRepository.getUserProfile(userId)
+}
 
     /**
      * Your GET endpoint

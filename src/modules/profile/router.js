@@ -9,6 +9,7 @@ const { validateJsonBody } = require('../../middleware/validateJsonBody')
 
 // user
 profileRouter.post('/profile/user', verifyLogin, validateJsonBody(profileValidatorSchema), userProfileController.createUserProfile)
+profileRouter.get('/profile/user/:id', verifyLogin, userProfileController.getUserProfile)
 profileRouter.put('/profile/user', userProfileController.updateUserProfileUser)
 
 

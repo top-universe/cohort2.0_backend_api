@@ -29,10 +29,11 @@ exports.verifyLogin = async (req, res, next) => {
     try {
         // perform jwt verification
         const user = jwt.verify(token, AppConfig.JWT_SECRET)
-        // check if the user exists in DB
         
+        // check if the user exists in DB
         const userExists = await checkIfUserExists(user.id)
-        // assign the user response object to the express request object
+
+        // pass the user data into the request object is everything is fine
         req.user = user
 
         next()

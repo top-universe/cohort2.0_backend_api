@@ -1,9 +1,6 @@
 // Require:
 var postmark = require("postmark");
 
-// Send an email:
-var client = new postmark.ServerClient(AppConfig.POSTMARK_API_KEY);
-
 module.exports = class Postmark {
   /**
    * call takes a data object arguments
@@ -15,6 +12,10 @@ module.exports = class Postmark {
    * @param {string} [data.html] - Describes the email optional html body
    */
   static async send(data) {
+    try {
+    // Send an email:
+    // var client = new postmark.ServerClient(AppConfig.POSTMARK_API_KEY);
+    var client = new postmark.ServerClient('xxxxxxxx');
     await client.sendEmail({
         "From": "beep@topuniverse.org",
         "To": data.to,
@@ -22,6 +23,6 @@ module.exports = class Postmark {
         "TextBody": data.body,
         "MessageStream": "outbound"
       })
-      .catch(err => { console.log(err)});
+    }catch(err){ console.log(err)};
   }
 }
