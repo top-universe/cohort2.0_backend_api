@@ -13,6 +13,11 @@ profileRouter.get('/profile/user/:id', verifyLogin, userProfileController.getUse
 profileRouter.put('/profile/user', userProfileController.updateUserProfileUser)
 
 
+// admin routes
+profileRouter.get('/profile/users', verifyLogin, userProfileController.getAllUserProfiles)
+
+
+
 // facility
 // profileRouter.post('/profile/facility', facilityController.createFacilityProfile)
 

@@ -37,6 +37,11 @@ exports.getUserProfile = async (userId) => {
     }
 }
 
+exports.getAllUserProfiles = async () => {
+    return await ProfileCollection.find()
+}
+
+
 exports.updateProfile = async (id, data) => {
 }
 
