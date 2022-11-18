@@ -4,49 +4,51 @@ const Joi = require('joi');
 
 
 let ProfileSchema = new mongoose.Schema({
-    _id:{
+    _id: {
         type: String,
         default: () => v4()
     },
-    user:{
+    user: {
         type: String,
     },
-    firstName:{ 
-        type: String,
-        required: true,
-        trim: true
-
-    },
-    middleName:{ 
-        type: String,
-        trim: true
-    },
-    lastName:{ 
+    firstName: {
         type: String,
         required: true,
         trim: true
+    },
+    middleName: {
+        type: String,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    state: {
+        type: String
+    },
+
+    LGA: {
+        type: String,
+        required: true
+    },
+
+    location: {
+        type: String,
+        required: true
+    },
+    phoneNumber: {
+        type: String
 
     },
-    country:{ 
-        type: String,
-        required: true
-    },
-    location:{ 
-        type: String,
-        required: true
-    },
-    phoneNumber:{ 
-        type: String,
-        required: true
-
-    },
-    status:{ 
+    status: {
         type: String,
     },
 },
-{
-    timestamps: true
-}
+    {
+        timestamps: true
+    }
 )
 
 exports.ProfileCollection = mongoose.model('UserProfile', ProfileSchema);
@@ -56,7 +58,8 @@ exports.profileValidatorSchema = Joi.object().keys({
     firstName: Joi.string().lowercase().required(),
     middleName: Joi.string().lowercase(),
     lastName: Joi.string().lowercase().required(),
-    country: Joi.string().lowercase().required(),
+    state: Joi.string().lowercase(),
+    LGA: Joi.string().lowercase(),
     location: Joi.string().lowercase().required(),
     phoneNumber: Joi.string().lowercase().required(),
     country: Joi.string().lowercase().required()
