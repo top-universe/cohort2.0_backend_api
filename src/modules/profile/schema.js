@@ -35,7 +35,9 @@ let ProfileSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type: String
-
+    },
+    profilePicture: {
+        type: String
     },
     status: {
         type: String,
@@ -55,5 +57,6 @@ exports.profileValidatorSchema = Joi.object().keys({
     lastName: Joi.string().lowercase().required(),
     state: Joi.string().lowercase(),
     LGA: Joi.string().lowercase(),
-    phoneNumber: Joi.string().lowercase().required(),
+    phoneNumber: Joi.string().required(),
+    profilePicture: Joi.string()
 })

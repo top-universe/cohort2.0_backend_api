@@ -15,6 +15,7 @@ exports.createUserProfile = async (data) => {
             state: newProfile.state,
             LGA: newProfile.LGA,
             phone: newProfile.phone
+
         }
     } catch (error) {
         throw new Error('Could not save profile')

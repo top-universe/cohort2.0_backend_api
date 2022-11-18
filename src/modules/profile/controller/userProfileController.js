@@ -1,4 +1,4 @@
-const {ProfileModel, AdminProfileModel} = require('../model/userProfileModel')
+const { ProfileModel, AdminProfileModel } = require('../model/userProfileModel')
 
 
 exports.userProfileController = {
@@ -33,29 +33,35 @@ exports.userProfileController = {
     try {
       let userId = req.params.id
 
-      if (req.user.id !== req.params.id) 
-      throw new Error('access denied')
+      if (req.user.id !== req.params.id)
+        throw new Error('access denied')
 
       let userProfile = await ProfileModel.getUserProfile(userId)
       res.status(200).json(userProfile)
-    } catch(err) {
+    } catch (err) {
       res.status(404).json({ error: err.message })
     }
   },
 
-  
+
   async getAllUserProfiles(req, res) {
     try {
       let profiles = await AdminProfileModel.getAllUserProfiles()
       // implement pagination
       res.status(200).json(profiles)
-    } catch(err) {
+    } catch (err) {
       res.status(404).json({ error: err.message })
     }
   },
 
- 
-  updateUserProfileUser(req, res) {
+
+  async updateUserProfileUser(req, res) {
+    try {
+
+
+    } catch (err) {
+      res.status(404).json({ error: err.message })
+    }
     res.send('done')
   },
 
