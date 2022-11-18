@@ -21,12 +21,26 @@ exports.createUserProfile = async (data) => {
     }
 }
 
-exports.getUserProfile = async (userId) => {
+exports.checkIfProfileExists = async (userId) => {
     let profile = await ProfileCollection.findOne({ user: userId })
     if (profile) {
         throw new Error('Profile already Exit')
     }
 }
+
+exports.getUserProfile = async (userId) => {
+    let profile = await ProfileCollection.findOne({ user: userId })
+    if (!profile) {
+        throw new Error('Profile Does not exist')
+    } else {
+        return profile
+    }
+}
+
+exports.getAllUserProfiles = async () => {
+    return await ProfileCollection.find()
+}
+
 
 exports.updateProfile = async (id, data) => {
 }

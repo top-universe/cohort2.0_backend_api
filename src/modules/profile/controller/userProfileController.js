@@ -1,4 +1,4 @@
-const userProfileModel = require('../model/userProfileModel')
+const {ProfileModel, AdminProfileModel} = require('../model/userProfileModel')
 
 
 exports.userProfileController = {
@@ -12,10 +12,10 @@ exports.userProfileController = {
       data.value.user = userId
 
       // verifyIfProfileAlreadyExists()
-      await userProfileModel.getUserProfile(userId)
+      await ProfileModel.checkIfProfileExists(userId)
 
-      // call the userProfileModel
-      await userProfileModel.createUserProfile(data.value)
+      // call the ProfileModel
+      let newProfile = await ProfileModel.createUserProfile(data.value)
 
       // send success message
       res.status(201).json({
@@ -28,14 +28,33 @@ exports.userProfileController = {
     }
   },
 
-  getProfileUserId(req, res) {
-    res.send('done')
+
+  async getUserProfile(req, res) {
+    try {
+      let userId = req.params.id
+
+      if (req.user.id !== req.params.id) 
+      throw new Error('access denied')
+
+      let userProfile = await ProfileModel.getUserProfile(userId)
+      res.status(200).json(userProfile)
+    } catch(err) {
+      res.status(404).json({ error: err.message })
+    }
   },
 
-  getProfileUsers(req, res) {
-    res.send('done')
+  
+  async getAllUserProfiles(req, res) {
+    try {
+      let profiles = await AdminProfileModel.getAllUserProfiles()
+      // implement pagination
+      res.status(200).json(profiles)
+    } catch(err) {
+      res.status(404).json({ error: err.message })
+    }
   },
 
+ 
   updateUserProfileUser(req, res) {
     res.send('done')
   },
