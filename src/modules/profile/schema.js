@@ -56,5 +56,4 @@ exports.profileValidatorSchema = Joi.object().keys({
     state: Joi.string().lowercase(),
     LGA: Joi.string().lowercase(),
     phoneNumber: Joi.string().lowercase().required(),
-    country: Joi.string().lowercase().required()
 })
