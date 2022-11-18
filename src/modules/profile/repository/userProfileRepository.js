@@ -1,8 +1,8 @@
 // repository
-const {ProfileCollection} = require('../schema');
+const { ProfileCollection } = require('../schema');
 
 
-exports.createUserProfile = async (data ) => {
+exports.createUserProfile = async (data) => {
     try {
         let newProfile = new ProfileCollection(data)
         await newProfile.save()
@@ -10,11 +10,11 @@ exports.createUserProfile = async (data ) => {
         return {
             id: newProfile._id,
             firstName: newProfile.firstName,
-            middleName:newProfile.middleName,
+            middleName: newProfile.middleName,
             lastName: newProfile.lastName,
-            country:newProfile.country,
-            location:newProfile.location,
-            phone:newProfile.phone
+            state: newProfile.state,
+            LGA: newProfile.LGA,
+            phone: newProfile.phone
         }
     } catch (error) {
         throw new Error('Could not save profile')
@@ -31,5 +31,5 @@ exports.getUserProfile = async (userId) => {
 exports.updateProfile = async (id, data) => {
 }
 
-exports.deleteProfile = async (id ) => {
+exports.deleteProfile = async (id) => {
 }

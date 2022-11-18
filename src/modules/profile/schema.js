@@ -33,11 +33,6 @@ let ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
-    location: {
-        type: String,
-        required: true
-    },
     phoneNumber: {
         type: String
 
@@ -60,7 +55,6 @@ exports.profileValidatorSchema = Joi.object().keys({
     lastName: Joi.string().lowercase().required(),
     state: Joi.string().lowercase(),
     LGA: Joi.string().lowercase(),
-    location: Joi.string().lowercase().required(),
     phoneNumber: Joi.string().lowercase().required(),
     country: Joi.string().lowercase().required()
 })
